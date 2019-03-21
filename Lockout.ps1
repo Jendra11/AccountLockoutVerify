@@ -27,7 +27,7 @@ $SKP = Read-Host "Insert User Login"
                     }#table          
                     }#if user
                     
-                }#Zamknięcie Foreach
+                }#Close Foreach
 
                 $LockedOutStats | Format-Table -Property DomainController,Name,LockedOut,BadPwdCount,AccountLockoutTime,LastBadPasswordAttempt -AutoSize              
                 Foreach($DC in $LockedOutStats){ #foreach start scan
@@ -37,12 +37,12 @@ $SKP = Read-Host "Insert User Login"
                 $unlock = Read-Host "Would you like to unlock account? Y/N"
                 if ($unlock -eq "Y"){ #if unlock Y
                 Unlock-ADAccount -Identity $SKP
-                    if ($blokada.LockedOut -eq 0){ #if zablokowane
+                    if ($blokada.LockedOut -eq 0){ #if locked
                     Write-Host "Account unlocked"
-                    }#if zablokowane
-                    else{ #if zablokowane true
+                    }#if locked
+                    else{ #if locked true
                     Write-Host "Account still locked"
-                    } #if zablokowane true
+                    } #if locked true
                 }#if unlock Y
                 elseif($unlock -eq "N"){#if unlock N
                 Write-Host "Account unlocked"
